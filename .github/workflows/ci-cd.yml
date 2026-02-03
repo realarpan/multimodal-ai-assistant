@@ -59,10 +59,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Frontend deps
+      - name: Run frontend tests
         run: |
           cd frontend
-          npm install --legacy-peer-deps
+          npm test -- --watch=false --passWithNoTests
+
 
       - name: Run frontend tests
         run: |
