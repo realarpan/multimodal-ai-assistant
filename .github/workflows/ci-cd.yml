@@ -62,7 +62,7 @@ jobs:
       - name: Frontend deps
         run: |
           cd frontend
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Run frontend tests
         run: |
