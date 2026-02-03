@@ -1,0 +1,69 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend-frontend-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: mm_user
+          POSTGRES_PASSWORD: mm_password
+          POSTGRES_DB: mm_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U mm_user"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    env:
+      DATABASE_URL: postgresql+psycopg2://mm_user:mm_password@localhost:5432/mm_db
+      REDIS_URL: redis://localhost:6379/0
+      HF_API_TOKEN: dummy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Backend deps
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r app/requirements.txt
+
+      - name: Run backend tests
+        run: |
+          cd backend
+          pytest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Frontend deps
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test -- --watch=false
