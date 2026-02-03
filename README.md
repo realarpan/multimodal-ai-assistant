@@ -1,6 +1,6 @@
 # Real-Time Multimodal AI Assistant 🚀
 
-[![CI/CD](https://img.shields.io/github/actions/workflow/status/your-username/multimodal-ai-assistant/ci-cd.yml?label=CI%2FCD)](https://github.com/your-username/multimodal-ai-assistant/actions)
+[![CI/CD](https://img.shields.io/github/actions/workflow/status/realarpan/multimodal-ai-assistant/ci-cd.yml?label=CI%2FCD)](https://github.com/realarpan/multimodal-ai-assistant/actions)
 ![Stars](https://img.shields.io/badge/stars-999-blue)
 ![Forks](https://img.shields.io/badge/forks-120-green)
 ![BuiltWith](https://img.shields.io/badge/Built%20with-%E2%9D%A4%EF%B8%8F%20for%20AI%2FML%202026-red)
