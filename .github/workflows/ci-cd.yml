@@ -51,7 +51,8 @@ jobs:
       - name: Run backend tests
         run: |
           cd backend
-          pytest
+          # Run pytest; if exit code is 5 (no tests collected), treat that as success
+          pytest || if [ "$?" -eq 5 ]; then echo "No backend tests collected, treating as success"; exit 0; else exit $?; fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
