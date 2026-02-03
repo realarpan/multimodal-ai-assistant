@@ -1,0 +1,24 @@
+
+***
+
+## 2. Root tooling
+
+### `.env.example`
+
+```env
+# Backend
+BACKEND_URL=http://localhost:8000
+DATABASE_URL=postgresql+psycopg2://mm_user:mm_password@db:5432/mm_db
+REDIS_URL=redis://redis:6379/0
+JWT_SECRET=supersecretjwt
+HF_API_TOKEN=hf_your_token_here
+CHROMA_DIR=/data/chroma
+
+# Frontend
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=supersecret_nextauth
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+NEXT_PUBLIC_WEBSOCKET_URL=ws://localhost:8000/ws
+
+# Prometheus
+PROMETHEUS_MULTIMODAL_SCRAPE_PORT=8000
