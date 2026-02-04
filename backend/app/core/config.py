@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     API_VERSION: str = "1.0.0"
     
     # Hugging Face
-    HF_API_TOKEN: str
+    HF_API_TOKEN: str = "dummy"
     HF_MODEL_ID: str = "llava-1.5-7b"
     
     # Database
@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379/0"
     
     # JWT
-    JWT_SECRET: str
+    JWT_SECRET: str = "dev-secret-do-not-use-in-production"
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_HOURS: int = 24
     
