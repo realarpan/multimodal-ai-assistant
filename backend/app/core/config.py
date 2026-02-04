@@ -2,17 +2,32 @@ from pydantic_settings import BaseSettings
 from functools import lru_cache
 
 class Settings(BaseSettings):
-    backend_url: str = "http://localhost:8000"
-    database_url: str
-    redis_url: str = "redis://redis:6379/0"
-    jwt_secret: str
-    hf_api_token: str
-    chroma_dir: str = "/data/chroma"
-
+    # API
+    DEBUG: bool = False
+    API_TITLE: str = "Multimodal AI Assistant"
+    API_VERSION: str = "1.0.0"
+    
+    # Hugging Face
+    HF_API_TOKEN: str
+    HF_MODEL_ID: str = "llava-1.5-7b"
+    
+    # Database
+    DATABASE_URL: str = "postgresql://user:password@localhost/multimodal"
+    
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379/0"
+    
+    # JWT
+    JWT_SECRET: str
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRATION_HOURS: int = 24
+    
+    # WebSocket
+    WEBSOCKET_URL: str = "ws://localhost:8000/ws"
+    
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
 
-@lru_cache
-def get_settings() -> Settings:
+@lru_cache()
+def get_settings():
     return Settings()
